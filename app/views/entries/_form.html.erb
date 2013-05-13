@@ -1,0 +1,89 @@
+<%= form_for(@entry) do |f| %>
+  <% if @entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+      <ul>
+      <% @entry.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <style>
+    h1 {
+      font-size: 2.2em;
+    }
+    input[type=text] {
+      font-size: 1.4em;
+      padding: 6px;
+    }
+    #edit-left, #edit-right {
+      float: left;
+    }
+    #edit-left {
+      width: 80px;
+      padding-right: 20px;
+      text-align: right;
+    }
+    #edit-left div label {
+      height:      70px;
+      line-height: 70px;
+      margin: 0;
+    }
+    textarea {
+      height: 40px;
+    }
+    #edit-right {
+      width: 400px;
+    }
+    #edit-right * {
+      width: 100%;
+    }
+    #edit-right div {
+      height:      70px;
+      line-height: 70px;
+    }
+  </style>
+
+  <div id="edit-left">
+    <div>
+      <%= f.label :title %>
+    </div>
+    <div>
+      <%= f.label :question %>
+    </div>
+    <div>
+      <%= f.label :answer %>
+    </div>
+    <div>
+      <%= f.label :explanation %>
+    </div>
+    <div>
+      <%= f.label :tags %>
+    </div>
+  </div><!-- /.edit-left -->
+  <div id="edit-right">
+    <div>
+      <%= f.text_field :title %>
+    </div>
+    <div>
+      <%= f.file_field :question %>
+    </div>
+    <div>
+      <%= f.file_field :answer %>
+    </div>
+    <div>
+      <%= f.text_area :explanation %>
+    </div>
+    <div>
+      <%= f.text_field :tags %>
+    </div>
+  </div><!-- /.edit-right -->
+  <div class="clear"></div>
+
+  <div class="actions" style="margin-top:30px;">
+    <%= f.submit %>
+  </div>
+<% end %>

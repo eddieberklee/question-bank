@@ -1,0 +1,61 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ * had issues with lightbox require_tree .
+ */
+
+body {
+  padding-top: 100px;
+}
+footer { margin-top: 100px; }
+table, td, th { vertical-align: middle !important; border: none !important; }
+th { border-bottom: 1px solid #DDD !important; }
+
+.clear { clear: both; }
+
+a {
+  color: #268ff4;
+  border: 0;
+  outline: 0;
+  text-decoration: none;
+  -webkit-transition: all 0.3s;
+}
+a:hover, a:focus {
+  color: #268ff4;
+}
+a.image-thumbnail:hover {
+  box-shadow: 0px 0px 8px #268ff4;
+  position: relative;
+  z-index: 99;
+}
+a:visited {
+  color: #268ff4;
+}
+
+a img {
+  border: 0;
+  outline: 0;
+  text-decoration: none;
+}
+
+img#answer {
+  display: none;
+  -webkit-transition: all 0.3s;
+}
+
+
+
+
+
+
+
+
+

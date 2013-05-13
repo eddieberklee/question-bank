@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @entry.title %>
+</p>
+
+<p>
+  <b>Question:</b>
+  <%= image_tag @entry.question_url if @entry.question.present? %>
+</p>
+<p>
+  <b id="show-answer" style="cursor:pointer;"><a>Show Answer:</a></b>
+  <% if @entry.answer.present? %>
+    <img src="<%=@entry.answer_url%>" id="answer">
+  <% end %>
+  <!--
+    <%= image_tag @entry.answer_url if @entry.answer.present? %>
+  -->
+</p>
+
+<style>
+</style>
+
+<p>
+  <b>Explanation:</b>
+  <div>
+    <%= @entry.explanation %>
+  </div>
+</p>
+
+<p>
+  <b>Tags:</b>
+  <div>
+    <%= @entry.tags %>
+  </div>
+</p>
+
+<%= link_to 'Edit', edit_entry_path(@entry) %> |
+<%= link_to 'Back', entries_path %>
+
+<script>
+  $(function() {
+    $("#show-answer").toggle(function() {
+      console.log($(this).next());
+      $(this).next().css('display','block');
+    }, function() {
+      $(this).next().css('display','none');
+    });
+  });
+</script>

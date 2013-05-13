@@ -1,0 +1,129 @@
+<h1 style="margin-bottom:20px;">Questions</h1>
+
+<style>
+  .clear {
+    clear: both;
+  }
+  .entry {
+    border-radius: 3px;
+    border: 1px solid #98cff7;
+    padding: 6px;
+    width: 300px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .tag {
+    float: left;
+    margin-right: 5px;
+    padding: 1px 4px 1px 4px;
+    font-size: 1.1em;
+    /* #286ff4 */
+    color: #fff;
+    /* background-color: #3d9ffa; */
+    border-radius: 3px;
+    border: 1px solid #3d9ffa;
+    color: #268ff4;
+    box-shadow: 0px 0px 0px #a8dff7;
+    cursor: pointer;
+  }
+  .tag:hover {
+    color: #fff;
+    background-color: #3d9ffa;
+  }
+  .tags-section {
+    padding: 8px 0;
+  }
+  .explanation-section {
+    padding: 2px 3px 0px 3px;
+  }
+
+  .image-thumbnail {
+    display: block;
+    width: 100px;
+    float: left;
+  }
+
+  .edit-button, .delete-button {
+    display: block;
+    border-radius: 2px;
+    background-color: #3d9ffa;
+    padding: 2px 1px 3px 5px;
+    float: left;
+    margin-right: 4px;
+    position: absolute;
+    cursor: pointer;
+    width: 80px;
+    right: -95px;
+  }
+  .edit-button {
+    top: 0;
+  }
+  .delete-button {
+    top: 30px;
+  }
+  .edit-button span, .delete-button span {
+    color: #fff;
+    margin-left: 4px;
+  }
+  .edit-button a, .delete-button a { color: #fff; }
+
+  table tr td {
+    font-family: 'Lato', sans-serif;
+  }
+</style>
+
+<% @entries.each do |entry| %>
+  <% puts entry.inspect %>
+  <div class="entry">
+    <a href="entries/<%= entry.id %>" style="display:block;margin-bottom:4px;float:left;">
+      <%= entry.title %>
+    </a>
+    
+    <div class="tags-section" style="float:left;margin-top:-7px;margin-left:6px;">
+      <% tags = []; entry.tags.split(',').each { |tagSegment| tags.append(tagSegment.strip.slice(0,tagSegment.length)) } %>
+      <% tags.each do |tag| %>
+        <div class='tag'><%=tag%></div>
+      <% end %>
+      <div class="clear"></div>
+    </div><!-- /.tags-section -->
+
+    <div class="clear"></div>
+
+    <!-- Question & Answer -->
+    <a href="<%=entry.question_url%>" rel="lightbox[question<%=entry.id%>]" class="image-thumbnail">
+      <%= image_tag entry.question_url(:thumb) if entry.question.present? %>
+    </a>
+    <a href="<%=entry.answer_url%>" rel="lightbox[question<%=entry.id%>]" class="image-thumbnail">
+      <%= image_tag entry.answer_url(:thumb) if entry.answer.present? %>
+    </a>
+    <div class="clear"></div>
+
+    <div style="height:5px;"></div>
+
+    <div class="explanation-section">
+      <%= entry.explanation %>
+    </div><!-- /.explanation-section -->
+
+    <br>
+
+    <a class="edit-button" href="<%=edit_entry_path(entry)%>">
+      <i class="icon-white icon-pencil" style="margin-right:-4px;"></i>
+      <span>Edit</span>
+      <!--
+        <%= link_to 'Edit', edit_entry_path(entry) %>
+      -->
+    </a><!-- /.edit-button -->
+    <a class="delete-button" href="<%=entry.id%>" data-confirm="Are you sure?" data-method="delete" rel="nofollow">
+      <i class="icon-white icon-trash" style="margin-right:-4px;"></i>
+      <span>Destroy</span>
+      <!--
+        <%= link_to 'Destroy', entry, :method => :delete, :data => { :confirm => 'Are you sure?' } %>
+      -->
+    </a><!-- /.delete-button -->
+    <div class="clear"></div>
+
+  </div><!-- /.entry -->
+<% end %>
+
+<br />
+
